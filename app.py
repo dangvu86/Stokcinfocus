@@ -92,8 +92,8 @@ st.dataframe(
     hide_index=True,
     column_config={
         "Year": "Year",
-        "Avg Return": st.column_config.NumberColumn(format="%.2f%%"),
-        "Avg Alpha": st.column_config.NumberColumn(format="%.2f%%"),
+        "Avg Return": st.column_config.NumberColumn(format="%.2%"),
+        "Avg Alpha": st.column_config.NumberColumn(format="%.2%"),
     },
     use_container_width=True
 )
