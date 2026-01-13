@@ -84,14 +84,29 @@ st.divider()
 st.subheader("🗓️ Yearly Performance Summary")
 summary_df = db_manager.get_yearly_summary(df)
 
-# Formatting for display
+# Formatting function for Summary
+def style_summary(styler):
+    def color_val(val):
+        if pd.isna(val): return ''
+        # Simple Logic: Green if > 0, Red if < 0
+        if isinstance(val, (int, float)):
+             color = 'green' if val > 0 else '#d32f2f' if val < 0 else 'black'
+             return f'color: {color}'
+        return ''
+
+    return (styler
+        .format({
+            "Avg Return": "{:.2%}",
+            "Avg Alpha": "{:.2%}"
+        })
+        .map(color_val, subset=['Avg Return', 'Avg Alpha'])
+    )
+
 st.dataframe(
-    summary_df,
+    style_summary(summary_df.style),
     hide_index=True,
     column_config={
         "Year": "Year",
-        "Avg Return": "Avg Return",
-        "Avg Alpha": "Avg Alpha",
     },
     use_container_width=True
 )
