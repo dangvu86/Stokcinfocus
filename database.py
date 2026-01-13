@@ -160,8 +160,8 @@ class DatabaseManager:
             summary_data.append({
                 "Year": str(year),
                 "Total Calls": total,
-                "Avg Return": year_df['Stock_Ret'].mean(),
-                "Avg Alpha": year_df['Alpha'].mean(),
+                "Median Return": year_df['Stock_Ret'].median(),
+                "Median Alpha": year_df['Alpha'].median(),
                 "% Outperform": format_pct_count(year_df['Rating'], "Outperform", total),
                 "% Underperform": format_pct_count(year_df['Rating'], "Underperform", total)
             })
@@ -171,8 +171,8 @@ class DatabaseManager:
         summary_data.append({
             "Year": "Total",
             "Total Calls": total_all,
-            "Avg Return": df['Stock_Ret'].mean(),
-            "Avg Alpha": df['Alpha'].mean(),
+            "Median Return": df['Stock_Ret'].median(),
+            "Median Alpha": df['Alpha'].median(),
             "% Outperform": format_pct_count(df['Rating'], "Outperform", total_all),
             "% Underperform": format_pct_count(df['Rating'], "Underperform", total_all)
         })
