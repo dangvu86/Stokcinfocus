@@ -96,10 +96,10 @@ def style_summary(styler):
 
     return (styler
         .format({
-            "Avg Return": "{:.2%}",
-            "Avg Alpha": "{:.2%}"
+            "Median Return": "{:.2%}",
+            "Median Alpha": "{:.2%}"
         })
-        .map(color_val, subset=['Avg Return', 'Avg Alpha'])
+        .map(color_val, subset=['Median Return', 'Median Alpha'])
     )
 
 st.dataframe(
