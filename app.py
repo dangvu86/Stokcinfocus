@@ -53,8 +53,6 @@ with st.sidebar:
     status_options = ["Active", "Closed", "All"]
     selected_status = st.radio("Status", status_options, index=2) # Default All
     
-    # Validation Filter
-    min_conviction = st.slider("Min Short-Term Conviction", 1, 5, 3)
 
 # --- MAIN PAGE ---
 st.title("📊 Portfolio Monitor")
@@ -92,8 +90,8 @@ st.dataframe(
     hide_index=True,
     column_config={
         "Year": "Year",
-        "Avg Return": st.column_config.NumberColumn(format="%.2%"),
-        "Avg Alpha": st.column_config.NumberColumn(format="%.2%"),
+        "Avg Return": "Avg Return",
+        "Avg Alpha": "Avg Alpha",
     },
     use_container_width=True
 )
@@ -114,8 +112,6 @@ if selected_status == "Active":
 elif selected_status == "Closed":
     filtered_df = filtered_df[filtered_df['IsClosed'] == 1]
 
-# Filter Conviction
-filtered_df = filtered_df[filtered_df['ShortTermConviction'] >= min_conviction]
 
 # Ensure Action_Date is formatted as string for display
 # This prevents Styler/ColumnConfig mismatch issues
